@@ -1,22 +1,19 @@
-.container-task
-   display: none;
-   position: absolute;
-   left: 30%;
-   top: 15%;
-   margin-left: -50px;
-   z-index: 100;
-.active
+.container-edit
    display: flex;
-
-#container-tarefa
+   z-index: 100;
+#container-edita
    background-color: #FFFFFF;
    border-radius: 8px;
-   
-   
+   position: fixed;
+   margin: auto;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
    width: 660px;
    height: 488px;
    padding: 34px 42px 37px 40px;
-   .adicionar-tarefa
+   .editar-tarefa
       position: relative;
       h1
          color: #283848;
@@ -60,7 +57,7 @@
             .submit
                button
                   color: #ffffff;
-                  background-color: #16D08D;
+                  background-color: #A6C1D2;
                   font-size: 1rem;
                   font-weight: 550;
                   border: none;
@@ -69,7 +66,7 @@
                   cursor: pointer;
                   transition: 0.2s;
                   &:active
-                     background-color: #11a16d;
+                     background-color: #839baa;
    .sair
       position: absolute;
       top: 0;
@@ -86,5 +83,3 @@
             font-size: 20px;
             padding: 0px 4px;
            
-                     
-               

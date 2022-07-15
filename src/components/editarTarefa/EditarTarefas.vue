@@ -1,8 +1,8 @@
 <template>
-  <div class="container-task" :class="{active:taskActive}">
-    <div id="container-tarefa">
-      <div class="adicionar-tarefa">
-        <h1>Cadastrar Tarefa</h1>
+  <div class="container-edit">
+    <div id="container-edita">
+      <div class="editar-tarefa">
+        <h1>Editar Tarefa</h1>
         <form action="">
           <label for="">Título:</label>
           <input type="text" />
@@ -19,7 +19,7 @@
               <label for="importante">Importante</label>
             </div>
             <div class="submit">
-              <button type="submit">Adicionar</button>
+              <button type="submit">Editar</button>
             </div>
           </div>
         </form>
@@ -33,13 +33,8 @@
 
 <script>
 export default {
-  name: "CadastrarTarefa",
-  data(){
-    return {
-      taskActive: false,
-    }
-  }
+  name: "EditarTarefas",
 };
 </script>
 
-<style src="./CadastrarTarefa.styl" lang="styl">
+<style src="./EditarTarefas.styl" lang="styl">

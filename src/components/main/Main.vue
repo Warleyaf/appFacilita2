@@ -45,9 +45,13 @@
 <script>
 export default {
   name: "Main",
+  props: {
+    openTask: Boolean
+  },
   data() {
     return {
       editDelete: false,
+      taskActive: true,
     };
   },
   methods: {
@@ -57,6 +61,9 @@ export default {
     closeEditDelete: function () {
       this.editDelete = false;
     },
+    openTask: function() {
+      this.taskActive = true
+    }
   },
 };
 </script>
