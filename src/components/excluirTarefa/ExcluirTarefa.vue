@@ -5,11 +5,14 @@
         <i class="fa-regular fa-trash-can"></i>
       </div>
       <p>Tem certeza que deseja <span>excluir</span> esta tarefa?</p>
-      <span class="sub-delete">Esta ação não poderá ser desfeita.</span>
+      <span class="sub-delete">Esta ação não  poderá ser desfeita.</span>
 
       <div class="btn-del">
         <button class="cancel" @click="cancelDelete">Cacelar</button>
-        <button class="confirm">Confirmar</button>
+        <button class="confirm" @click="confirmRemoveTask()">Confirmar</button>
+      </div>
+      <div>
+         <h1></h1>
       </div>
     </div>
   </div>
@@ -22,16 +25,24 @@ export default {
   data() {
    return {
       activeTask: false,
+      taskSelected: [],
+      tasks: [],
    }
 
   },
   methods: {
     cancelDelete: function() {
       this.activeTask = false
+    },
+    confirmRemoveTask() {
+      this.tasks.splice(this.taskSelected.index, 1);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
   },
   created(){
-      EventBus.$on('btn-excluir-task', (addTask) => {
+      EventBus.$on('btn-excluir-task', (addTask, taskSelected, tasks) => {
+         console.log(tasks)
+      console.log(taskSelected)
       this.activeTask = addTask
     })
   }

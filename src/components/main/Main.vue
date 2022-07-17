@@ -12,10 +12,10 @@
         <input type="text" placeholder="Buscar Tarefas" />
         <button><i class="fas fa-search"></i></button>
       </div>
-      <div class="tasks">
+      <div class="tasks" v-for="(task, index) in tasks" :key="index">
         <div class="check">
           <input class="checkbox" type="checkbox" />
-          <p>Planejjar alguma coisa</p>
+          <p>{{task.description}}</p>
         </div>
 
         <div class="prioridade-option">
@@ -28,7 +28,7 @@
         <div class="option" :class="{ active: editDelete }">
           <div class="delete-edit">
             <a href="#" @click="btnEditTask()" v-on:click="closeEditDelete">Editar</a>
-            <a href="#" @click="btnExcluirTask()" v-on:click="closeEditDelete">Excluir</a>
+            <a href="#" @click="btnExcluirTask(task, index)" v-on:click="closeEditDelete">Excluir</a>
           </div>
           <button v-on:click="closeEditDelete" class="btn-edit-delete">
             <i class="fas fa-ellipsis-v"></i>
@@ -50,6 +50,8 @@ export default {
     return {
       editDelete: false,
       addTask: true,
+      tasks: [],
+      taskSelected: [],
     };
   },
   methods: {
@@ -69,11 +71,17 @@ export default {
       EventBus.$emit('btn-edit-task', this.addTask)
       
     },
-    btnExcluirTask() {
+    btnExcluirTask(task, index) {
       console.log('Testando')
-      EventBus.$emit('btn-excluir-task', this.addTask)
+      this.taskSelected = task;
+      this.taskSelected.index = index;
+      EventBus.$emit('btn-excluir-task', this.addTask, this.taskSelected, this.tasks )
     }
   },
+
+  created() {
+    this.tasks = (localStorage.getItem("tasks")) ? JSON.parse(localStorage.getItem("tasks")) : [];
+  }
 };
 </script>
 
