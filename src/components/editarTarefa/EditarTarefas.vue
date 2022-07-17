@@ -1,5 +1,5 @@
 <template>
-  <div class="container-edit">
+  <div class="container-edit" :class="{ active: activeTask }">
     <div id="container-edita">
       <div class="editar-tarefa">
         <h1>Editar Tarefa</h1>
@@ -24,7 +24,7 @@
           </div>
         </form>
         <div class="sair">
-          <button><i class="fas fa-times"></i></button>
+          <button @click="closeEdit"><i class="fas fa-times"></i></button>
         </div>
       </div>
     </div>
@@ -32,8 +32,24 @@
 </template>
 
 <script>
+import { EventBus } from '@/EventBus';
 export default {
   name: "EditarTarefas",
+  data() {
+    return {
+      activeTask: false
+    }
+  },
+  methods: {
+    closeEdit: function() {
+      this.activeTask = false
+    }
+  },
+  created() {
+    EventBus.$on('btn-edit-task', (addTask) => {
+      this.activeTask = addTask
+    })
+  }
 };
 </script>
 

@@ -27,8 +27,8 @@
 
         <div class="option" :class="{ active: editDelete }">
           <div class="delete-edit">
-            <a href="#">Editar</a>
-            <a href="#">Excluir</a>
+            <a href="#" @click="btnEditTask()" v-on:click="closeEditDelete">Editar</a>
+            <a href="#" @click="btnExcluirTask()" v-on:click="closeEditDelete">Excluir</a>
           </div>
           <button v-on:click="closeEditDelete" class="btn-edit-delete">
             <i class="fas fa-ellipsis-v"></i>
@@ -36,22 +36,20 @@
         </div>
       </div>
     </div>
-    <div id="btn-addTask">
+    <div id="btn-addTask" @click="btnAddTask()">
       <button class="addTaskbtn">+</button>
     </div>
   </main>
 </template>
 
 <script>
+import { EventBus } from '@/EventBus';
 export default {
   name: "Main",
-  props: {
-    openTask: Boolean
-  },
   data() {
     return {
       editDelete: false,
-      taskActive: true,
+      addTask: true,
     };
   },
   methods: {
@@ -61,8 +59,19 @@ export default {
     closeEditDelete: function () {
       this.editDelete = false;
     },
-    openTask: function() {
-      this.taskActive = true
+    btnAddTask() {
+      console.log('Meu cumpadeee');
+      EventBus.$emit('btn-add-task', this.addTask)
+    },
+
+    btnEditTask() {
+      console.log("Eai")
+      EventBus.$emit('btn-edit-task', this.addTask)
+      
+    },
+    btnExcluirTask() {
+      console.log('Testando')
+      EventBus.$emit('btn-excluir-task', this.addTask)
     }
   },
 };

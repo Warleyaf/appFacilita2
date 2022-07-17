@@ -1,5 +1,5 @@
 <template>
-  <div class="excluir-task">
+  <div class="excluir-task" :class="{ active: activeTask }">
     <div class="excluir-con-can">
       <div class="trash">
         <i class="fa-regular fa-trash-can"></i>
@@ -8,7 +8,7 @@
       <span class="sub-delete">Esta ação não poderá ser desfeita.</span>
 
       <div class="btn-del">
-        <button class="cancel">Cacelar</button>
+        <button class="cancel" @click="cancelDelete">Cacelar</button>
         <button class="confirm">Confirmar</button>
       </div>
     </div>
@@ -16,13 +16,31 @@
 </template>
 
 <script>
+import { EventBus } from '@/EventBus';
 export default {
-  name: "DeleteTask",
+  name: "ExcluirTarefa",
+  data() {
+   return {
+      activeTask: false,
+   }
+
+  },
+  methods: {
+    cancelDelete: function() {
+      this.activeTask = false
+    }
+  },
+  created(){
+      EventBus.$on('btn-excluir-task', (addTask) => {
+      this.activeTask = addTask
+    })
+  }
 };
 </script>
 
 <style lang="stylus" scoped>
    .excluir-task
+      display: none;
       position: fixed;
       margin: auto;
       top: 0;
@@ -31,12 +49,14 @@ export default {
       right: 0;
       width: 477px;
       height: 345px;
-      display: flex;
       border-radius: 8px;
       justify-content: center;
       text-align: center;
       background-color: #FFFFFF;
-      z-index: 20; 
+      z-index: 20;
+   .active
+      display: flex;
+
       .excluir-con-can
          display: flex;
          flex-direction: column;

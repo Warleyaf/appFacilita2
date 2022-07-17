@@ -5,7 +5,7 @@
     <EditarTarefas />
     <Navleft />
     <div class="container">
-      <div id="overlay" v-if="menuActive"></div>
+      <div id="overlay"></div>
       <Navuser />
       <div class="cont-main">
         <Categories />

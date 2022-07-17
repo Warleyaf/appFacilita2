@@ -1,5 +1,5 @@
 <template>
-  <div class="container-task" :class="{active:taskActive}">
+  <div class="container-task" :class="{ active: activeTask }">
     <div id="container-tarefa">
       <div class="adicionar-tarefa">
         <h1>Cadastrar Tarefa</h1>
@@ -24,7 +24,7 @@
           </div>
         </form>
         <div class="sair">
-          <button><i class="fas fa-times"></i></button>
+          <button @click="closeTask"><i class="fas fa-times"></i></button>
         </div>
       </div>
     </div>
@@ -32,12 +32,25 @@
 </template>
 
 <script>
+import { EventBus } from '@/EventBus';
 export default {
   name: "CadastrarTarefa",
   data(){
     return {
-      taskActive: false,
+      activeTask: false
+      
     }
+  },
+  methods: {
+    closeTask: function() {
+      this.activeTask = false
+    }
+  },
+
+  created() {
+    EventBus.$on('btn-add-task', (addTask) => {
+      this.activeTask = addTask
+    })
   }
 };
 </script>
