@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -8,11 +8,13 @@
 import './styles/global.styl';
 
 import Dashboard from './pages/Dashboard.vue';
+import Home from './pages/Home.vue';
 
 export default {
   name: 'App',
   components: {
-    Dashboard
+    Dashboard,
+    Home
   }
 }
 </script>

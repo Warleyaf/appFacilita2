@@ -37,11 +37,12 @@ export default {
     confirmRemoveTask() {
       this.tasks.splice(this.taskSelected.index, 1);
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
+
     }
   },
   created(){
       EventBus.$on('btn-excluir-task', (addTask, taskSelected, tasks) => {
-         console.log(tasks)
+      console.log(tasks)
       console.log(taskSelected)
       this.activeTask = addTask
     })
