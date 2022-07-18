@@ -19,7 +19,7 @@
               <label for="importante">Importante</label>
             </div>
             <div class="submit">
-              <button type="submit">Editar</button>
+              <button type="submit" @click="edit()">Editar</button>
             </div>
           </div>
         </form>
@@ -37,16 +37,21 @@ export default {
   name: "EditarTarefas",
   data() {
     return {
-      activeTask: false
+      activeTask: false,
+      taskSelected: [],
     }
   },
   methods: {
     closeEdit: function() {
       this.activeTask = false
+    },
+    edit() {
+     
     }
   },
   created() {
     EventBus.$on('btn-edit-task', (addTask) => {
+      console.log(addTask)
       this.activeTask = addTask
     })
   }

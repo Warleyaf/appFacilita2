@@ -20,7 +20,7 @@
 
         <li>
           <a href="#">
-            <i class="far fa-check-circle"></i>
+            <i class="fas fa-cogs"></i>
             <span>Configurações</span>
           </a>
         </li>

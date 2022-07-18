@@ -9,7 +9,8 @@
 
       <div class="btn-del">
         <button class="cancel" @click="cancelDelete">Cacelar</button>
-        <button class="confirm" @click="confirmRemoveTask()">Confirmar</button>
+        <!-- <button href="sds#" class="confirm" @click="confirmRemoveTask()">Confirmar</button> -->
+        <a class="confirm" href="/dashboard" @click="confirmRemoveTask()">Confirmar</a>
       </div>
       <div>
          <h1></h1>
@@ -121,6 +122,7 @@ export default {
                background-color: #FF4874;
                cursor: pointer;
                transition: 0.2s;
+               text-decoration: none;
                &:active
                   background-color: #cf4062;
 </style>

@@ -8,7 +8,7 @@
           <input type="text" v-model="form.subject" required/>
 
           <label for="">Descrição</label>
-          <textarea name="" id="" cols="25" rows="8" v-model="form.description"></textarea>
+          <textarea name="" id="" cols="25" rows="8" v-model="form.description" required></textarea>
 
           <div class="radio-btn">
             <div class="radio-select">
@@ -18,8 +18,11 @@
               <input type="radio" name="prioridade" id="importante" />
               <label for="importante">Importante</label>
             </div>
-            <div class="submit">
+            <!-- <div class="submit">
               <button type="submit" @click="saveTask">Adicionar</button>
+            </div> -->
+            <div class="submit">
+              <a href="/dashboard" @click="saveTask">Adicionar</a> 
             </div>
           </div>
         </form>

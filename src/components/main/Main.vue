@@ -12,12 +12,35 @@
         <input type="text" placeholder="Buscar Tarefas" />
         <button><i class="fas fa-search"></i></button>
       </div>
+
       <div class="list-todo">
         <ul>
-          <ListTask />
-          
+          <li v-for="(task, index) in tasks" :key="index">
+            <div class="btn-checked">
+              <input type="checkbox" id="check" />
+              <label>{{ task.subject }}: {{ task.description }}</label>
+            </div>
+
+            <div class="prioridade-option">
+              <span>Urgente</span>
+              <button class="btn-option" v-on:click="openEditDelete">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+
+            <div class="option" :class="{ active: editDelete }">
+              <div class="delete-edit">
+                <a href="#" @click="btnEditTask(index)">Editar</a>
+                <a href="#" @click="btnExcluirTask(task, index)">Excluir</a>
+              </div>
+              <button class="btn-edit-delete" v-on:click="closeEditDelete">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+          </li>
         </ul>
       </div>
+
     </div>
     <div id="btn-addTask" @click="btnAddTask()">
       <button class="addTaskbtn">+</button>
@@ -25,14 +48,12 @@
   </main>
 </template>
 
+<!--==========Script======-->
+
 <script>
-import ListTask from "../listtask/ListTask.vue";
 import { EventBus } from "@/EventBus";
 export default {
   name: "Main",
-  components: {
-    ListTask,
-  },
   data() {
     return {
       editDelete: false,
@@ -52,13 +73,12 @@ export default {
       console.log("Meu cumpadeee");
       EventBus.$emit("btn-add-task", this.addTask);
     },
-
-    btnEditTask() {
-      console.log("Eai");
+    btnEditTask(index) {
+      console.log(index);
       EventBus.$emit("btn-edit-task", this.addTask);
     },
+
     btnExcluirTask(task, index) {
-      console.log("Testando");
       this.taskSelected = task;
       this.taskSelected.index = index;
       EventBus.$emit(
